@@ -1,0 +1,5 @@
+@use "./scss/variables.scss";
+
+* {
+    font-family: variables.$font-stack;
+}
