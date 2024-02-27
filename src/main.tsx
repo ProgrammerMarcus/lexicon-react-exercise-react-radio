@@ -10,7 +10,7 @@ const router = createBrowserRouter([
         path: "/",
         element: (
             <App>
-                <RadioChannels></RadioChannels>
+                <RadioChannels />
             </App>
         ),
     },
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
         path: "/categories",
         element: (
             <App>
-                <RadioCategories></RadioCategories>
+                <RadioCategories />
             </App>
         ),
     },

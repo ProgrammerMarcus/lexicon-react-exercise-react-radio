@@ -5,8 +5,7 @@ import "./App.scss"
 
 export function App(props: { children: JSX.Element; }) {
     return <>
-      <RadioNavbar>
-      </RadioNavbar>
+      <RadioNavbar />
       {props.children}
     </>;
 }
