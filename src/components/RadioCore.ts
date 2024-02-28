@@ -22,9 +22,10 @@ function channelsToObjects(channelElements: NodeListOf<Element>) {
     return channelObjects;
 }
 
-export async function getChannels() {
+// base url "https://api.sr.se/api/v2/channels/"
+export async function getChannels(url: string) {
     const parser = new DOMParser();
-    const response = await fetch("https://api.sr.se/api/v2/channels/");
+    const response = await fetch(url);
     const text = await response.text();
     const parse = parser.parseFromString(text, "application/xml");
     const object = {
@@ -35,6 +36,16 @@ export async function getChannels() {
         nextPage: parse.querySelector("pagination nextpage")?.textContent,
         channels: channelsToObjects(parse.querySelectorAll("channels channel")),
     };
-    console.log(parse, object);
     return object
+}
+
+export async function getAllChannels() {
+    const all: Channel[] = []
+    let current = getChannels("https://api.sr.se/api/v2/channels/")
+    current.then(o => {o.channels.forEach(c => all.push(c))})
+    while ((await current).nextPage) {
+        current = getChannels((await current).nextPage || "oh noes")
+        current.then(o => {o.channels.forEach(c => all.push(c))})
+    }
+    return all
 }
