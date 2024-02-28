@@ -4,19 +4,19 @@ function channelsToObjects(channelElements: NodeListOf<Element>) {
     const channelObjects: Channel[] = [];
     channelElements.forEach((c) => {
         channelObjects.push({
-            id: c.getAttribute("id") ? c.getAttribute("id") : "Missing ID",
-            name: c.getAttribute("name") ? c.getAttribute("name") : "Unknown",
-            image: c.querySelector("image")?.textContent,
-            imageTemplate: c.querySelector("imagetemplate")?.textContent,
-            color: c.querySelector("color")?.textContent,
-            tagline: c.querySelector("tagline")?.textContent,
-            siteUrl: c.querySelector("siteurl")?.textContent,
-            liveAudioId: c.querySelector("liveaudio")?.getAttribute("id"),
-            liveAudioUrl: c.querySelector("liveaudio url")?.textContent,
-            liveAudioStatKey: c.querySelector("liveaudio statkey")?.textContent,
-            scheduleUrl: c.querySelector("scheduleurl")?.textContent,
-            channelType: c.querySelector("channeltype")?.textContent,
-            xmlTVid: c.querySelector("xmltvid")?.textContent,
+            id: c.getAttribute("id") || "missing id",
+            name: c.getAttribute("name") || "missing name",
+            image: c.querySelector("image")?.textContent || "missing image",
+            imageTemplate: c.querySelector("imagetemplate")?.textContent || "missing image template",
+            color: c.querySelector("color")?.textContent || "missing color",
+            tagline: c.querySelector("tagline")?.textContent || "missing tagline",
+            siteUrl: c.querySelector("siteurl")?.textContent || "missing site url",
+            liveAudioId: c.querySelector("liveaudio")?.getAttribute("id") || "missing audio id",
+            liveAudioUrl: c.querySelector("liveaudio url")?.textContent || "missing live audio url",
+            liveAudioStatKey: c.querySelector("liveaudio statkey")?.textContent || "missing audio stat key",
+            scheduleUrl: c.querySelector("scheduleurl")?.textContent || "missing schedule url",
+            channelType: c.querySelector("channeltype")?.textContent || "missing channel type",
+            xmlTVid: c.querySelector("xmltvid")?.textContent || "missing xml TV id?",
         });
     });
     return channelObjects;
@@ -44,7 +44,7 @@ export async function getAllChannels() {
     let current = getChannels("https://api.sr.se/api/v2/channels/")
     current.then(o => {o.channels.forEach(c => all.push(c))})
     while ((await current).nextPage) {
-        current = getChannels((await current).nextPage || "oh noes")
+        current = getChannels((await current).nextPage || "oh noes") // 
         current.then(o => {o.channels.forEach(c => all.push(c))})
     }
     return all
