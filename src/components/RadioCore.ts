@@ -36,4 +36,5 @@ export async function getChannels() {
         channels: channelsToObjects(parse.querySelectorAll("channels channel")),
     };
     console.log(parse, object);
+    return object
 }
