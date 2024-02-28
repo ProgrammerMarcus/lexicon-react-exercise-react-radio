@@ -14,8 +14,17 @@ export function RadioChannels() {
     return (
         <>
             <main className="RadioChannels">
-                <h2 className="header">Available channels</h2>
-                {channels.map((c) => <div key={c.id}>{c.name}</div>)}
+                <h2 className="header text-bold">Available channels</h2>
+                {channels.map((c) => (
+                    <section key={c.id} className="channel">
+                        <div className="head">
+                            <img src={c.image} alt="Channel image" className="image" />
+                            <h3 className="name">{c.name}</h3>
+                        </div>
+
+                        <p className="tagline">{c.tagline}</p>
+                    </section>
+                ))}
             </main>
         </>
     );

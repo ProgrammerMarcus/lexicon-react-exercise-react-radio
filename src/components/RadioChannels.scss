@@ -1,6 +1,38 @@
+@use "../scss/variables.scss";
+
 .RadioChannels {
+    display: grid;
+    gap: 8px;
+    margin: 24px;
     .header {
         font-size: 1.6rem;
-        margin: 18px;
+        margin: 0 0 12px 0;
+        color: white;
+    }
+    .channel {
+        display: grid;
+        gap: 10px;
+        backdrop-filter: brightness(2.2) contrast(1.5) saturate(0.3);
+        border-radius: 5px;
+        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+        .head {
+            display: grid;
+            grid-template: 1fr / max-content 1fr;
+            gap: 16px;
+            background-color: variables.$primary-color;
+            color: white;
+            border-radius: 5px 5px 0 0;
+            clip-path: stroke-box;
+            .image {
+                height: 3.6rem;
+            }
+            .name {
+                font-size: 1.3rem;
+                margin: auto 0;
+            }
+        }
+        .tagline {
+            margin: 3px 10px 15px 10px;
+        }
     }
 }

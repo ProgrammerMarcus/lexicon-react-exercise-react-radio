@@ -1,5 +1,30 @@
 @use "./scss/variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Quicksand:wght@300..700&display=swap");
+
+.text-regular {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
+}
+
+.text-bold {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
+}
+
+body {
+    background: linear-gradient(337deg, rgba(180, 58, 122, 1) 0%, rgba(67, 240, 139, 1) 29%, rgba(252, 90, 69, 1) 100%);
+}
 
 * {
-    font-family: variables.$font-stack;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
 }
