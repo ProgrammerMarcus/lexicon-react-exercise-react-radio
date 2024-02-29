@@ -1,4 +1,5 @@
 import Channel from "./interfaces/Channel";
+import Program from "./interfaces/Program";
 
 function channelsToObjects(channelElements: NodeListOf<Element>) {
     const channelObjects: Channel[] = [];
@@ -20,6 +21,20 @@ function channelsToObjects(channelElements: NodeListOf<Element>) {
         });
     });
     return channelObjects;
+}
+
+function programsToObjects(programElements: NodeListOf<Element>) {
+    const programObjects: Program[] = [];
+    programElements.forEach((p) => {
+        programObjects.push({
+            id: p.getAttribute("id") || "missing id",
+            name: p.getAttribute("name") || "missing name",
+            image: p.querySelector("programimage")?.textContent || "missing image",
+            programCategoryID: p.querySelector("programimage")?.textContent || "missing category id",
+            description: p.querySelector("description")?.textContent || "missing description",
+        });
+    });
+    return programObjects;
 }
 
 // base url "https://api.sr.se/api/v2/channels/"
@@ -44,8 +59,36 @@ export async function getAllChannels() {
     let current = getChannels("https://api.sr.se/api/v2/channels/")
     current.then(o => {o.channels.forEach(c => all.push(c))})
     while ((await current).nextPage) {
-        current = getChannels((await current).nextPage || "oh noes") // 
+        current = getChannels((await current).nextPage || "oh noes") // hmmm
         current.then(o => {o.channels.forEach(c => all.push(c))})
+    }
+    return all
+}
+
+export async function getPrograms(url: string) {
+    const parser = new DOMParser();
+    const response = await fetch(url);
+    const text = await response.text();
+    const parse = parser.parseFromString(text, "application/xml");
+    console.log(parse)
+    const object = {
+        page: parse.querySelector("pagination page")?.textContent,
+        size: parse.querySelector("pagination size")?.textContent,
+        totalHits: parse.querySelector("pagination totalhits")?.textContent,
+        totalPages: parse.querySelector("pagination totalpages")?.textContent,
+        nextPage: parse.querySelector("pagination nextpage")?.textContent,
+        programs: programsToObjects(parse.querySelectorAll("programs program")),
+    };
+    return object
+}
+
+export async function getAllPrograms(id: string) {
+    const all: Program[] = []
+    let current = getPrograms(`http://api.sr.se/api/v2/programs/index?channelid=${id}`)
+    current.then(o => {o.programs.forEach(p => all.push(p))})
+    while ((await current).nextPage) {
+        current = getPrograms((await current).nextPage || "oh noes")
+        current.then(o => {o.programs.forEach(p => all.push(p))})
     }
     return all
 }

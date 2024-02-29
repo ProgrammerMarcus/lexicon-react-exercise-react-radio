@@ -3,6 +3,7 @@ import "./RadioChannels.scss";
 
 import Channel from "./interfaces/Channel";
 import { getAllChannels } from "./RadioCore";
+import { Link } from "react-router-dom";
 
 export function RadioChannels() {
     const [channels, setChannels] = useState<Channel[]>([]);
@@ -21,8 +22,8 @@ export function RadioChannels() {
                             <img src={c.image} alt="Channel image" className="image" />
                             <h3 className="name">{c.name}</h3>
                         </div>
-
                         <p className="tagline">{c.tagline}</p>
+                        <Link className="btn text-bold" to={`/programs/${c.id}`}>Programs</Link>
                     </section>
                 ))}
             </main>
