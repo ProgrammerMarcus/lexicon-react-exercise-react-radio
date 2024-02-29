@@ -16,16 +16,18 @@
     }
     .channel {
         width: 100%;
-        margin: 0 auto 0 auto;
+        margin: 0;
         display: grid;
         backdrop-filter: brightness(2.2) contrast(1.5) saturate(0.3);
         border-radius: 5px;
         box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
+        padding-bottom: 8px;
         .head {
             display: grid;
             grid-template: 48px / 48px 1fr;
             gap: 16px;
             background-color: variables.$primary-color;
+            width: calc(100% + 1px); // rounding error fix for backdrop-filter and background-color
             color: white;
             border-radius: 5px 5px 0 0;
             clip-path: stroke-box;
@@ -44,7 +46,7 @@
             background-color: darken($color: variables.$accent-color, $amount: 20);
             color: white;
             width: max-content;
-            margin: 12px 12px 12px auto;
+            margin: 12px 12px 0 auto;
             padding: 0.5rem;
             border-radius: 5px;
         }
