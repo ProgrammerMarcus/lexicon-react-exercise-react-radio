@@ -5,7 +5,7 @@ export function RadioNavbar() {
     return (
         <>
             <nav className="RadioNavbar">
-                <h1 className="logo"><img src="logo.svg" alt="RADIO"/></h1>
+                <h1 className="logo"><img src="/logo.svg" alt="RADIO"/></h1>
                 <Link to="/" className="link">CHANNELS</Link>
                 <Link to="/categories" className="link">CATEGORIES</Link>
             </nav>

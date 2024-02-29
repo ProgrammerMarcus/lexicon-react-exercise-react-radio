@@ -19,6 +19,9 @@
 
 body {
     background: linear-gradient(337deg, rgba(180, 58, 122, 1) 0%, rgba(67, 240, 139, 1) 29%, rgba(252, 90, 69, 1) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100svh;
 }
 
 * {

@@ -32,6 +32,7 @@ function programsToObjects(programElements: NodeListOf<Element>) {
             image: p.querySelector("programimage")?.textContent || "missing image",
             programCategoryID: p.querySelector("programimage")?.textContent || "missing category id",
             description: p.querySelector("description")?.textContent || "missing description",
+            broadcastInfo: p.querySelector("broadcastinfo")?.textContent || "Missing broadcast info",
         });
     });
     return programObjects;

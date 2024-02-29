@@ -1,23 +1,29 @@
 @use "../scss/variables.scss";
 
-.RadioChannels {
+.list {
     display: grid;
-    gap: 8px;
-    margin: 24px;
+    gap: 16px;
+    margin: 12px 5% 0 5%;
+    .day {
+        display: grid;
+        gap: 16px;
+        margin: 12px auto 0 auto;
+    }
     .header {
         font-size: 1.6rem;
-        margin: 0 0 12px 0;
+        margin: 0 0 0 0;
         color: white;
     }
     .channel {
+        width: 100%;
+        margin: 0 auto 0 auto;
         display: grid;
-        gap: 10px;
         backdrop-filter: brightness(2.2) contrast(1.5) saturate(0.3);
         border-radius: 5px;
         box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
         .head {
             display: grid;
-            grid-template: 1fr / max-content 1fr;
+            grid-template: 48px / 48px 1fr;
             gap: 16px;
             background-color: variables.$primary-color;
             color: white;
@@ -32,15 +38,21 @@
             }
         }
         .tagline {
-            margin: 3px 10px 3px 10px;
+            margin: 8px 10px 3px 10px;
         }
         .btn {
             background-color: darken($color: variables.$accent-color, $amount: 20);
             color: white;
             width: max-content;
-            margin: auto 12px 12px auto;
+            margin: 12px 12px 12px auto;
             padding: 0.5rem;
             border-radius: 5px;
+        }
+        .broadcast {
+            margin: 12px 10px 3px 10px;
+            font-size: 0.9rem;
+            color: darken($color: variables.$accent-color, $amount: 30);
+            text-align: center;
         }
     }
 }

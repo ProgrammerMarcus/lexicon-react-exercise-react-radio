@@ -4,6 +4,7 @@ export interface Program {
     description: string,
     programCategoryID: string,
     image: string,
+    broadcastInfo: string,
 }
 
 export default Program

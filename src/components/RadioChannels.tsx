@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./RadioChannels.scss";
+import "../scss/common.scss";
 
 import Channel from "./interfaces/Channel";
 import { getAllChannels } from "./RadioCore";
@@ -14,7 +14,7 @@ export function RadioChannels() {
 
     return (
         <>
-            <main className="RadioChannels">
+            <main className="list">
                 <h2 className="header text-bold">Available channels</h2>
                 {channels.map((c) => (
                     <section key={c.id} className="channel">
