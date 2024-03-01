@@ -5,6 +5,9 @@
     color: white;
     gap: 0.8rem;
     display: grid;
+    position: sticky;
+    top: 0;
+    z-index: 111;
     grid-template: 3rem / min-content min-content min-content;
     padding: 4px 0;
     .link {
