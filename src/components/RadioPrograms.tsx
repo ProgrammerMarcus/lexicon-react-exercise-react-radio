@@ -60,7 +60,7 @@ export function RadioPrograms() {
                         <section key={p.starttimeutc} className="box">
                             <div className="head">
                                 <img src={p.imageurl || "/logo.svg"} alt="Channel image" className="image" />
-                                <h3 className="name">{p.title}</h3>
+                                <h3 className="name">{p.program.name}</h3>
                             </div>
                             <p className="broadcast">{stringToDate(p.starttimeutc)}</p>
                             <p className="tagline">{p.description}</p>

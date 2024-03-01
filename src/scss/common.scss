@@ -10,12 +10,12 @@
     cursor: pointer;
 }
 .btn:hover {
-    background-color: darken($color: variables.$accent-color, $amount: 25);
+    background-color: darken($color: variables.$accent-color, $amount: 25) !important;
     transition: .3s;
 }
 
 .btn.active {
-    background-color: darken($color: variables.$alt-color, $amount: 25);
+    background-color: darken($color: variables.$alt-color, $amount: 25) !important;
     cursor: default;
 }
 
@@ -91,5 +91,24 @@
             width: 100%;
             text-align: center;
         }
+    }
+}
+
+.group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    max-width: 90%;
+    margin: 42px auto auto auto;
+    place-content: start center;
+    .item {
+        display: grid;
+        place-content: center;
+        height: min-content;
+        background-color: variables.$primary-color;
+        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.1);
+        padding: 12px;
+        margin: 0.3rem;
+        color: white;
     }
 }
