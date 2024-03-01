@@ -117,7 +117,6 @@ export async function getAllChannelsJSON() {
 export async function getProgramsOnDateOnChannelJSON(id: string, date: string) {
     const response = await fetch(`https://api.sr.se/api/v2/scheduledepisodes?channelid=${id}&date=${date}&format=json&&pagination=false`);
     const data = await response.json();
-    console.log(data);
     return data;
 }
 
