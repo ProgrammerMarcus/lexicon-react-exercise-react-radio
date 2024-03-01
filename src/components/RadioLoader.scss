@@ -1,0 +1,36 @@
+@use "../scss/variables.scss";
+
+.RadioLoader {
+    z-index: 99;
+    display: fixed;
+    position: absolute;
+    width: 100lvw;
+    height: 100lvh;
+    background-color: variables.$primary-color;
+}
+.RadioLoader::after {
+    display: fixed;
+    position: absolute;
+    top: calc(50lvh - 150px);
+    left: calc(50lvw - 100px);
+    content: "";
+    width: 200px;
+    height: 200px;
+    animation: RadioLoaderAnimation 6s linear infinite;
+    border: 25px dotted variables.$accent-color;
+    border-radius: 50%;
+}
+@keyframes RadioLoaderAnimation {
+    0% {
+        transform: rotate(0deg);
+        border-color: white;
+    }
+    50% {
+        transform: rotate(180deg);
+        border-color: variables.$accent-color;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-color: white;
+    }
+}

@@ -3,12 +3,14 @@ import "../scss/common.scss";
 import { useParams } from "react-router-dom";
 import { getAllPrograms } from "./RadioCore";
 import Program from "./interfaces/Program";
+import RadioLoader from "./RadioLoader";
 
 export function RadioPrograms() {
     const [programs, setPrograms] = useState<Program[]>([]);
     const { id } = useParams();
+    const [loading, setLoading] = useState<boolean>(true)
     useEffect(() => {
-        getAllPrograms(id!).then((data) => setPrograms(data));
+        getAllPrograms(id!).then((data) => {setPrograms(data); setLoading(false)});
     }, [id]);
 
     // dates have to many cases, need other date source for requirements
@@ -58,50 +60,52 @@ export function RadioPrograms() {
 
     return (
         <>
+            {loading && (<RadioLoader  />)}
             <main className="list">
                 <section className="today day">
-                <h2 className="header text-bold">Broadcasting Today</h2>
-                {programs
-                    .filter((p) => checkIfToday(p.broadcastInfo, new Date().getDay()))
-                    .map((p) => (
-                        <section key={p.id} className="channel">
-                            <div className="head">
-                                <img src={p.image} alt="Channel image" className="image" />
-                                <h3 className="name">{p.name}</h3>
-                            </div>
-                            <p className="broadcast">{p.broadcastInfo}</p>
-                            <p className="tagline">{p.description}</p>
-                        </section>
-                    ))}
+                    <h2 className="header text-bold">Broadcasting Today</h2>
+                    {programs
+                        .filter((p) => checkIfToday(p.broadcastInfo, new Date().getDay()))
+                        .map((p) => (
+                            <section key={p.id} className="channel">
+                                <div className="head">
+                                    <img src={p.image} alt="Channel image" className="image" />
+                                    <h3 className="name">{p.name}</h3>
+                                </div>
+                                <p className="broadcast">{p.broadcastInfo}</p>
+                                <p className="tagline">{p.description}</p>
+                            </section>
+                        ))}
                 </section>
                 <section className="tomorrow day">
-                <h2 className="header text-bold">Broadcasting Tomorrow</h2>
-                {programs
-                    .filter((p) => checkIfToday(p.broadcastInfo, (new Date().getDay() + 1) % 6))
-                    .map((p) => (
-                        <section key={p.id} className="channel">
-                            <div className="head">
-                                <img src={p.image} alt="Channel image" className="image" />
-                                <h3 className="name">{p.name}</h3>
-                            </div>
-                            <p className="broadcast">{p.broadcastInfo}</p>
-                            <p className="tagline">{p.description}</p>
-                        </section>
-                    ))}
+                    <h2 className="header text-bold">Broadcasting Tomorrow</h2>
+                    {programs
+                        .filter((p) => checkIfToday(p.broadcastInfo, (new Date().getDay() + 1) % 6))
+                        .map((p) => (
+                            <section key={p.id} className="channel">
+                                <div className="head">
+                                    <img src={p.image} alt="Channel image" className="image" />
+                                    <h3 className="name">{p.name}</h3>
+                                </div>
+                                <p className="broadcast">{p.broadcastInfo}</p>
+                                <p className="tagline">{p.description}</p>
+                            </section>
+                        ))}
                 </section>
                 <section className="tomorrow day">
-                <h2 className="header text-bold">All Broadcasts</h2>
-                {programs
-                    .map((p) => (
-                        <section key={p.id} className="channel">
-                            <div className="head">
-                                <img src={p.image} alt="Channel image" className="image" />
-                                <h3 className="name">{p.name}</h3>
-                            </div>
-                            <p className="broadcast">{p.broadcastInfo}</p>
-                            <p className="tagline">{p.description}</p>
-                        </section>
-                    ))}
+                    <h2 className="header text-bold">Other Broadcasts</h2>
+                    {programs
+                        .filter((p) => !(checkIfToday(p.broadcastInfo, (new Date().getDay() + 1) % 6) || checkIfToday(p.broadcastInfo, (new Date().getDay() + 1) % 6)))
+                        .map((p) => (
+                            <section key={p.id} className="channel">
+                                <div className="head">
+                                    <img src={p.image} alt="Channel image" className="image" />
+                                    <h3 className="name">{p.name}</h3>
+                                </div>
+                                <p className="broadcast">{p.broadcastInfo}</p>
+                                <p className="tagline">{p.description}</p>
+                            </section>
+                        ))}
                 </section>
             </main>
         </>

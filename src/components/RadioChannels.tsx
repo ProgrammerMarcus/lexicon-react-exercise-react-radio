@@ -4,16 +4,18 @@ import "../scss/common.scss";
 import Channel from "./interfaces/Channel";
 import { getAllChannels } from "./RadioCore";
 import { Link } from "react-router-dom";
+import RadioLoader from "./RadioLoader";
 
 export function RadioChannels() {
     const [channels, setChannels] = useState<Channel[]>([]);
-
+    const [loading, setLoading] = useState<boolean>(true)
     useEffect(() => {
-        getAllChannels().then((data) => setChannels(data));
+        getAllChannels().then((data) => {setChannels(data); setLoading(false);});
     }, []);
 
     return (
         <>
+            {loading && (<RadioLoader />)}
             <main className="list">
                 <h2 className="header text-bold">Available channels</h2>
                 {channels.map((c) => (
