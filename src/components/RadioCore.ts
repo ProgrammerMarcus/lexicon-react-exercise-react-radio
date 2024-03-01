@@ -52,18 +52,22 @@ export async function getChannels(url: string) {
         nextPage: parse.querySelector("pagination nextpage")?.textContent,
         channels: channelsToObjects(parse.querySelectorAll("channels channel")),
     };
-    return object
+    return object;
 }
 
 export async function getAllChannels() {
-    const all: Channel[] = []
-    let current = getChannels("https://api.sr.se/api/v2/channels/")
-    current.then(o => {o.channels.forEach(c => all.push(c))})
+    const all: Channel[] = [];
+    let current = getChannels("https://api.sr.se/api/v2/channels/");
+    current.then((o) => {
+        o.channels.forEach((c) => all.push(c));
+    });
     while ((await current).nextPage) {
-        current = getChannels((await current).nextPage || "oh noes") // hmmm
-        current.then(o => {o.channels.forEach(c => all.push(c))})
+        current = getChannels((await current).nextPage || "oh noes"); // hmmm
+        current.then((o) => {
+            o.channels.forEach((c) => all.push(c));
+        });
     }
-    return all
+    return all;
 }
 
 export async function getPrograms(url: string) {
@@ -71,7 +75,7 @@ export async function getPrograms(url: string) {
     const response = await fetch(url);
     const text = await response.text();
     const parse = parser.parseFromString(text, "application/xml");
-    console.log(parse)
+    console.log(parse);
     const object = {
         page: parse.querySelector("pagination page")?.textContent,
         size: parse.querySelector("pagination size")?.textContent,
@@ -80,16 +84,52 @@ export async function getPrograms(url: string) {
         nextPage: parse.querySelector("pagination nextpage")?.textContent,
         programs: programsToObjects(parse.querySelectorAll("programs program")),
     };
-    return object
+    return object;
 }
 
 export async function getAllPrograms(id: string) {
-    const all: Program[] = []
-    let current = getPrograms(`http://api.sr.se/api/v2/programs/index?channelid=${id}`)
-    current.then(o => {o.programs.forEach(p => all.push(p))})
+    const all: Program[] = [];
+    let current = getPrograms(`http://api.sr.se/api/v2/programs/index?channelid=${id}`);
+    current.then((o) => {
+        o.programs.forEach((p) => all.push(p));
+    });
     while ((await current).nextPage) {
-        current = getPrograms((await current).nextPage || "oh noes")
-        current.then(o => {o.programs.forEach(p => all.push(p))})
+        current = getPrograms((await current).nextPage || "oh noes");
+        current.then((o) => {
+            o.programs.forEach((p) => all.push(p));
+        });
     }
-    return all
+    return all;
+}
+
+export async function getAllProgramsChannelJSON(id: string) {
+    const response = await fetch(`http://api.sr.se/api/v2/programs/index?channelid=${id}&&format=json&&pagination=false`);
+    const data = await response.json();
+    return data;
+}
+
+export async function getAllChannelsJSON() {
+    const response = await fetch("https://api.sr.se/api/v2/channels?format=json&&pagination=false");
+    const data = await response.json();
+    return data;
+}
+
+export async function getProgramsOnDateOnChannelJSON(id: string, date: string) {
+    const response = await fetch(`https://api.sr.se/api/v2/scheduledepisodes?channelid=${id}&date=${date}&format=json&&pagination=false`);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+export function stringToDate(date: string) {
+    const find = date.match(/\d+/);
+    if (find !== null) {
+        const day = new Intl.DateTimeFormat("sv-SE", {
+            dateStyle: "full",
+            timeStyle: "long",
+        }).format(new Date(Number(find[0])));
+        return day;
+    } else {
+        return "Incorrect date format";
+    }
 }
