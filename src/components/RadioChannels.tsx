@@ -28,9 +28,14 @@ export function RadioChannels() {
                             <h3 className="name">{c.name}</h3>
                         </div>
                         <p className="tagline">{c.tagline}</p>
-                        <Link className="btn text-bold" to={`/programs/${c.id}`}>
-                            Schedule
-                        </Link>
+                        <div className="row">
+                            <Link className="btn text-bold" to={`/programs/${c.id}`}>
+                                Programs
+                            </Link>
+                            <Link className="btn text-bold" to={`/schedule/${c.id}`}>
+                                Schedule
+                            </Link>
+                        </div>
                     </section>
                 ))}
             </main>

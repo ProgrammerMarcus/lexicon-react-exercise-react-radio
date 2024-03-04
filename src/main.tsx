@@ -4,7 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "./App.tsx";
 import RadioChannels from "./components/RadioChannels.tsx";
 import RadioCategories from "./components/RadioCategories.tsx";
-import { RadioPrograms } from "./components/RadioPrograms.tsx";
+import { RadioSchedule } from "./components/RadioSchedule.tsx";
+import RadioPrograms from "./components/RadioPrograms.tsx";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,14 @@ const router = createBrowserRouter([
         element: (
             <App>
                 <RadioCategories />
+            </App>
+        ),
+    },
+    {
+        path: "/schedule/:id",
+        element: (
+            <App>
+                <RadioSchedule />
             </App>
         ),
     },

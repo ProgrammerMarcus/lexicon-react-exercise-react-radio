@@ -4,7 +4,7 @@ import { getAllCategoriesJSON } from "./RadioCore";
 import RadioLoader from "./RadioLoader";
 import Category from "./interfaces/Category";
 
-export function RadioPrograms() {
+export function RadioCategories() {
     const [active, setActive] = useState(2);
     const [loading, setLoading] = useState<boolean>(true);
     const [categories, setCategories] = useState<Category[]>([]);
@@ -33,4 +33,4 @@ export function RadioPrograms() {
     );
 }
 
-export default RadioPrograms;
+export default RadioCategories;

@@ -92,6 +92,11 @@
             text-align: center;
         }
     }
+    .row {
+        display: grid;
+        justify-content: end;
+        grid-template: 1fr / max-content max-content;
+    }
 }
 
 .group {

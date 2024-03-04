@@ -1,68 +1,35 @@
 import { useEffect, useState } from "react";
 import "../scss/common.scss";
 import { useParams } from "react-router-dom";
-import { getProgramsOnDateOnChannelJSON, stringToDate } from "./RadioCore";
+import { getAllProgramsChannelJSON } from "./RadioCore";
 import RadioLoader from "./RadioLoader";
-import Schedule from "./interfaces/Schedule";
+import Program from "./interfaces/Program";
 
 export function RadioPrograms() {
-    const [active, setActive] = useState("Today");
     const { id } = useParams();
     const [loading, setLoading] = useState<boolean>(true);
-    const [date, setDate] = useState<Date>(new Date());
-    const [programs, setPrograms] = useState<Schedule[]>([]);
+    const [programs, setPrograms] = useState<Program[]>([]);
     useEffect(() => {
         setLoading(true);
-        const formatted = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-        getProgramsOnDateOnChannelJSON(id!, formatted).then((data) => {
-            setPrograms(data.schedule);
+        getAllProgramsChannelJSON(id!).then((data) => {
+            setPrograms(data.programs);
             setLoading(false);
         });
-    }, [date, id]);
+    }, [id]);
 
     return (
         <>
             {loading && <RadioLoader />}
             <main className="list expand">
-                <span className="select">View Schedule for:</span>
-                <div className="controls">
-                    <button
-                        className={active === "Today" ? "btn active" : "btn"}
-                        onClick={() => {
-                            setDate(new Date(new Date().getTime()));
-                            setActive("Today");
-                        }}
-                    >
-                        Today
-                    </button>
-                    <button
-                        className={active === "Tomorrow" ? "btn active" : "btn"}
-                        onClick={() => {
-                            setDate(new Date(new Date().getTime() + 86400000));
-                            setActive("Tomorrow");
-                        }}
-                    >
-                        Tomorrow
-                    </button>
-                    <button
-                        className={active === "Overmorrow" ? "btn active" : "btn"}
-                        onClick={() => {
-                            setDate(new Date(new Date().getTime() + 172800000));
-                            setActive("Overmorrow");
-                        }}
-                    >
-                        Overmorrow
-                    </button>
-                </div>
                 <section className="day">
-                    <h2 className="header text-bold">{active}</h2>
+                    <h2 className="header text-bold">Programs</h2>
                     {programs.map((p) => (
-                        <section key={p.starttimeutc} className="box">
+                        <section key={p.id} className="box">
                             <div className="head">
-                                <img src={p.imageurl || "/logo.svg"} alt="Channel image" className="image" />
-                                <h3 className="name">{p.program.name}</h3>
+                                <img src={p.programimage || "/logo.svg"} alt="Channel image" className="image" />
+                                <h3 className="name">{p.name}</h3>
                             </div>
-                            <p className="broadcast">{stringToDate(p.starttimeutc)}</p>
+                            <p className="broadcast">{p.broadcastinfo}</p>
                             <p className="tagline">{p.description}</p>
                         </section>
                     ))}
