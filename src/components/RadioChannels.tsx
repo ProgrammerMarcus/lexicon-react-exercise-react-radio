@@ -3,8 +3,8 @@ import "../scss/common.scss";
 
 import Channel from "./interfaces/Channel";
 import { getAllChannelsJSON } from "./RadioCore";
-import { Link } from "react-router-dom";
 import RadioLoader from "./RadioLoader";
+import RadioChannel from "./RadioChannel";
 
 export function RadioChannels() {
     const [channels, setChannels] = useState<Channel[]>([]);
@@ -22,21 +22,7 @@ export function RadioChannels() {
             <main className="list">
                 <h2 className="header text-bold">Available channels</h2>
                 {channels.map((c) => (
-                    <section key={c.id} className="box">
-                        <div className="head">
-                            <img src={c.image} alt="Channel image" className="image" />
-                            <h3 className="name">{c.name}</h3>
-                        </div>
-                        <p className="tagline">{c.tagline}</p>
-                        <div className="row">
-                            <Link className="btn text-bold" to={`/programs/${c.id}`}>
-                                Programs
-                            </Link>
-                            <Link className="btn text-bold" to={`/schedule/${c.id}`}>
-                                Schedule
-                            </Link>
-                        </div>
-                    </section>
+                    <RadioChannel c={c} />
                 ))}
             </main>
         </>
