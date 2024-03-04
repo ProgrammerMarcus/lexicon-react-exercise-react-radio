@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getProgramsSearch } from "./RadioCore";
 import RadioLoader from "./RadioLoader";
 import Program from "./interfaces/Program";
+import RadioProgram from "./RadioProgram";
 
 export function RadioSearch() {
     const { search } = useParams();
@@ -24,14 +25,7 @@ export function RadioSearch() {
                 <section className="day">
                     <h2 className="header text-bold">Search Results</h2>
                     {programs.map((p) => (
-                        <section key={p.id} className="box">
-                            <div className="head">
-                                <img src={p.programimage || "/logo.svg"} alt="Channel image" className="image" />
-                                <h3 className="name">{p.name}</h3>
-                            </div>
-                            <p className="broadcast">{p.broadcastinfo}</p>
-                            <p className="tagline">{p.description}</p>
-                        </section>
+                        <RadioProgram p={p} />
                     ))}
                 </section>
             </main>
