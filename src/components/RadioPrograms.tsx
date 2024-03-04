@@ -11,7 +11,7 @@ export function RadioPrograms() {
     const [programs, setPrograms] = useState<Program[]>([]);
     useEffect(() => {
         setLoading(true);
-        getAllAiringProgramsChannelJSON(id!).then((data) => {
+        getAllAiringProgramsChannelJSON(Number(id!)).then((data) => {
             setPrograms(data.programs);
             setLoading(false);
         });

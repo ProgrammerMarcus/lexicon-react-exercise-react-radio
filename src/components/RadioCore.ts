@@ -1,11 +1,17 @@
-export async function getAllProgramsChannelJSON(id: string) {
+export async function getAllProgramsChannelJSON(id: number) {
     const response = await fetch(`http://api.sr.se/api/v2/programs/index?channelid=${id}&&format=json&&pagination=false`);
     const data = await response.json();
     return data;
 }
 
-export async function getAllAiringProgramsChannelJSON(id: string) {
+export async function getAllAiringProgramsChannelJSON(id: number) {
     const response = await fetch(`https://api.sr.se/api/v2/programs/index?channelid=${id}&&format=json&&pagination=false&&isarchived=false`);
+    const data = await response.json();
+    return data;
+}
+
+export async function getAllAiringProgramsCategoryJSON(id: number) {
+    const response = await fetch(`https://api.sr.se/api/v2/programs/index?programcategoryid=${id}&&format=json&&pagination=false&&isarchived=false`);
     const data = await response.json();
     return data;
 }
@@ -16,7 +22,7 @@ export async function getAllChannelsJSON() {
     return data;
 }
 
-export async function getProgramsOnDateOnChannelJSON(id: string, date: string) {
+export async function getProgramsOnDateOnChannelJSON(id: number, date: string) {
     const response = await fetch(`https://api.sr.se/api/v2/scheduledepisodes?channelid=${id}&date=${date}&format=json&&pagination=false`);
     const data = await response.json();
     return data;

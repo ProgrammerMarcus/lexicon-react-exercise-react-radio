@@ -14,7 +14,7 @@ export function RadioSchedule() {
     useEffect(() => {
         setLoading(true);
         const formatted = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-        getProgramsOnDateOnChannelJSON(id!, formatted).then((data) => {
+        getProgramsOnDateOnChannelJSON(Number(id!), formatted).then((data) => {
             setPrograms(data.schedule);
             setLoading(false);
         });
