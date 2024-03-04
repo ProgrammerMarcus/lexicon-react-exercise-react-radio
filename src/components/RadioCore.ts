@@ -4,6 +4,12 @@ export async function getAllProgramsChannelJSON(id: string) {
     return data;
 }
 
+export async function getAllAiringProgramsChannelJSON(id: string) {
+    const response = await fetch(`https://api.sr.se/api/v2/programs/index?channelid=${id}&&format=json&&pagination=false&&isarchived=false`);
+    const data = await response.json();
+    return data;
+}
+
 export async function getAllChannelsJSON() {
     const response = await fetch("https://api.sr.se/api/v2/channels?format=json&&pagination=false");
     const data = await response.json();

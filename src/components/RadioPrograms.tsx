@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../scss/common.scss";
 import { useParams } from "react-router-dom";
-import { getAllProgramsChannelJSON } from "./RadioCore";
+import { getAllAiringProgramsChannelJSON } from "./RadioCore";
 import RadioLoader from "./RadioLoader";
 import Program from "./interfaces/Program";
 
@@ -11,7 +11,7 @@ export function RadioPrograms() {
     const [programs, setPrograms] = useState<Program[]>([]);
     useEffect(() => {
         setLoading(true);
-        getAllProgramsChannelJSON(id!).then((data) => {
+        getAllAiringProgramsChannelJSON(id!).then((data) => {
             setPrograms(data.programs);
             setLoading(false);
         });
