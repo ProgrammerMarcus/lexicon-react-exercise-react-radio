@@ -34,6 +34,12 @@ export async function getAllCategoriesJSON() {
     return data;
 }
 
+export async function getProgramsSearch(search: string) {
+    const response = await fetch(`https://api.sr.se/api/v2/programs/index?format=json&&pagination=false&&isarchived=false&&filter=%22name%22&&filtervalue=${search}`);
+    const data = await response.json();
+    return data;
+}
+
 export function stringToDate(date: string) {
     const find = date.match(/\d+/);
     if (find !== null) {
