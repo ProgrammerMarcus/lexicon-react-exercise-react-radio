@@ -45,6 +45,19 @@
         margin: 0 0 0 0;
         color: white;
     }
+    .header-big {
+        font-size: 2.1rem;
+        margin: 0 0 0 0;
+        color: white;
+    }
+    .info .header {
+        color: black;
+    }
+    .info {
+        padding: 1rem;
+        display: grid;
+        gap: 0.3rem;
+    }
     .box {
         width: 100%;
         margin: 0;
@@ -96,6 +109,9 @@
         display: grid;
         justify-content: end;
         grid-template: 1fr / max-content max-content;
+    }
+    .image-wide {
+        width: 100%;
     }
 }
 
