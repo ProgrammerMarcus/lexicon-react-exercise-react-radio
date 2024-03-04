@@ -4,6 +4,7 @@ import { getAllAiringProgramsCategoryJSON, getAllCategoriesJSON } from "./RadioC
 import RadioLoader from "./RadioLoader";
 import Category from "./interfaces/Category";
 import Program from "./interfaces/Program";
+import RadioProgram from "./RadioProgram";
 
 export function RadioCategories() {
     const [active, setActive] = useState(2);
@@ -47,14 +48,7 @@ export function RadioCategories() {
                 </div>
                 <section className="day">
                     {programs.map((p) => (
-                        <section key={p.id} className="box">
-                            <div className="head">
-                                <img src={p.programimage || "/logo.svg"} alt="Channel image" className="image" />
-                                <h3 className="name">{p.name}</h3>
-                            </div>
-                            <p className="broadcast">{p.broadcastinfo}</p>
-                            <p className="tagline">{p.description}</p>
-                        </section>
+                        <RadioProgram p={p} />
                     ))}
                 </section>
             </main>
