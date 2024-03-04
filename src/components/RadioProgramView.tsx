@@ -6,7 +6,7 @@ import RadioLoader from "./RadioLoader";
 import Program from "./interfaces/Program";
 import RadioProgram from "./RadioProgram";
 
-export function RadioPrograms() {
+export function RadioProgramView() {
     const { id } = useParams();
     const [loading, setLoading] = useState<boolean>(true);
     const [programs, setPrograms] = useState<Program[]>([]);
@@ -33,4 +33,4 @@ export function RadioPrograms() {
     );
 }
 
-export default RadioPrograms;
+export default RadioProgramView;
