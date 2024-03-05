@@ -20,27 +20,29 @@ export function RadioProgramView() {
     return (
         <>
             {loading && <RadioLoader />}
-            <main className="list expand">
-                <section className="day">
-                    <h2 className="header-big text-bold">{program?.name}</h2>
-                    <img src={program?.programimagewide} alt="Program image" className="image-wide" />
-                    <div className="box info">
-                        <h3 className="header">Info</h3>
-                        <span className="text-bold">{program?.description}</span>
-                        <span>{`Email: ${program?.email || "Unavailable"}`}</span>
-                        <span>{`Phone: ${program?.phone || "Unavailable"}`}</span>
-                        <span>{"Archived: " + (program?.archived ? "Yes" : "No")}</span>
-                        <span>{"On demand: " + (program?.hasondemand ? "Yes" : "No")}</span>
-                        <span>{"Podcast: " + (program?.haspod ? "Yes" : "No")}</span>
-                        <span>{`Category: ${program?.programcategory.name || "Unavailable"}`}</span>
-                        <span>{`Airs on: ${program?.channel.name || "Unavailable"}`}</span>
-                        <span className="broadcast">{program?.broadcastinfo}</span>
-                        <Link className="btn text-bold" to={`/schedule/${program?.channel.id}`}>
-                            View Channel
-                        </Link>
-                    </div>
-                </section>
-            </main>
+            {program && (
+                <main className="list expand">
+                    <section className="day">
+                        <h2 className="header-big text-bold">{program.name || "Unavailable"}</h2>
+                        <img src={program.programimagewide} alt="Program image" className="image-wide" />
+                        <div className="box info">
+                            <h3 className="header">Info</h3>
+                            <span className="text-bold">{program.description}</span>
+                            <span>{`Email: ${program.email || "Unavailable"}`}</span>
+                            <span>{`Phone: ${program.phone || "Unavailable"}`}</span>
+                            <span>{"Archived: " + (program.archived ? "Yes" : "No")}</span>
+                            <span>{"On demand: " + (program.hasondemand ? "Yes" : "No")}</span>
+                            <span>{"Podcast: " + (program.haspod ? "Yes" : "No")}</span>
+                            <span>{"Category: " + (program.programcategory ? program.programcategory.name : "Unavailable")}</span>
+                            <span>{`Airs on: ${program.channel.name || "Unavailable"}`}</span>
+                            <span className="broadcast">{program.broadcastinfo}</span>
+                            <Link className="btn text-bold" to={`/schedule/${program.channel.id}`}>
+                                View Channel
+                            </Link>
+                        </div>
+                    </section>
+                </main>
+            )}
         </>
     );
 }

@@ -36,6 +36,7 @@ export async function getAllCategoriesJSON() {
     return data;
 }
 
+// api filters do not seem to work
 export async function getProgramsSearch(search: string) {
     const response = await fetch(`https://api.sr.se/api/v2/programs/index?format=json&&pagination=false&&isarchived=false&&filter=%22name%22&&filtervalue=${search}`);
     const data = await response.json();
@@ -45,6 +46,7 @@ export async function getProgramsSearch(search: string) {
 export async function getProgram(id: number) {
     const response = await fetch(`https://api.sr.se/api/v2/programs/${id}?format=JSON`);
     const data = await response.json();
+    console.log(`https://api.sr.se/api/v2/programs/${id}?format=JSON`)
     return data;
 }
 
