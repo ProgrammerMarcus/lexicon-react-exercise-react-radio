@@ -51,7 +51,7 @@ export async function getProgram(id: number) {
 export async function getSpecificPrograms(list: number[]) {
     const programs: Program[] = []
     for (const id of list) {
-        getProgram(id).then(data => programs.push(data.program))
+        await getProgram(id).then(data => programs.push(data.program))
     }
     return programs;
 }

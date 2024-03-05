@@ -25,7 +25,7 @@ export function RadioSearch() {
                 <section className="day">
                     <h2 className="header text-bold">Search Results</h2>
                     {programs.map((p) => (
-                        <RadioProgram p={p} />
+                        <RadioProgram key={p.id} p={p} />
                     ))}
                 </section>
             </main>
