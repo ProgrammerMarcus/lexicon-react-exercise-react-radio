@@ -39,7 +39,7 @@ export async function getAllCategoriesJSON() {
 export async function getProgramsSearch(search: string) {
     const response = await fetch(`https://api.sr.se/api/v2/programs/index?format=json&&pagination=false&&isarchived=false&&filter=%22name%22&&filtervalue=${search}`);
     const data = await response.json();
-    return data;
+    return data.programs.filter((v: Program) => v.name.toLocaleLowerCase().search(search.toLocaleLowerCase()) !== -1);
 }
 
 export async function getProgram(id: number) {

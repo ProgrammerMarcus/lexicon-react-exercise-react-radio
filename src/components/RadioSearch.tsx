@@ -13,7 +13,7 @@ export function RadioSearch() {
     useEffect(() => {
         setLoading(true);
         getProgramsSearch(search!).then((data) => {
-            setPrograms(data.programs);
+            setPrograms(data);
             setLoading(false);
         });
     }, [search]);
