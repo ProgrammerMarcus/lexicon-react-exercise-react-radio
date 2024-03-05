@@ -24,7 +24,6 @@ export function App(props: { children: JSX.Element }) {
                 <RadioNavbar />
                 {props.children}
             </>
-            ;
         </FavoritesContext.Provider>
     );
 }

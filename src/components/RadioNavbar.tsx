@@ -22,6 +22,9 @@ export function RadioNavbar() {
                 <Link to="/categories" className="link">
                     CATEGORIES
                 </Link>
+                <Link to="/favorites" className="link">
+                    FAVORITES
+                </Link>
                 <input onKeyUp={search} onChange={(e) => setValue(e.target.value)} value={value} className="search" type="text" name="navbar-search" id="RadioNavbarSearch" placeholder="Search..." />
             </nav>
         </>

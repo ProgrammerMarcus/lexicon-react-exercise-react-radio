@@ -8,6 +8,7 @@ import { RadioSchedule } from "./components/RadioSchedule.tsx";
 import RadioPrograms from "./components/RadioPrograms.tsx";
 import RadioSearch from "./components/RadioSearch.tsx";
 import RadioProgramView from "./components/RadioProgramView.tsx";
+import RadioFavorites from "./components/RadioFavorites.tsx";
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,14 @@ const router = createBrowserRouter([
         element: (
             <App>
                 <RadioProgramView />
+            </App>
+        ),
+    },
+    {
+        path: "/favorites/",
+        element: (
+            <App>
+                <RadioFavorites />
             </App>
         ),
     },

@@ -1,3 +1,5 @@
+import Program from "./interfaces/Program";
+
 export async function getAllProgramsChannelJSON(id: number) {
     const response = await fetch(`http://api.sr.se/api/v2/programs/index?channelid=${id}&&format=json&&pagination=false`);
     const data = await response.json();
@@ -44,6 +46,14 @@ export async function getProgram(id: number) {
     const response = await fetch(`https://api.sr.se/api/v2/programs/${id}?format=JSON`);
     const data = await response.json();
     return data;
+}
+
+export async function getSpecificPrograms(list: number[]) {
+    const programs: Program[] = []
+    for (const id of list) {
+        getProgram(id).then(data => programs.push(data.program))
+    }
+    return programs;
 }
 
 export function stringToDate(date: string) {

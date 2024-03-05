@@ -48,7 +48,7 @@ export function RadioCategories() {
                 </div>
                 <section className="day">
                     {programs.map((p) => (
-                        <RadioProgram p={p} />
+                        <RadioProgram key={p.id} p={p} />
                     ))}
                 </section>
             </main>
