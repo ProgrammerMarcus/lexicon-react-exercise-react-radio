@@ -35,7 +35,7 @@ export function RadioProgramView() {
                         <span>{`Category: ${program?.programcategory.name || "Unavailable"}`}</span>
                         <span>{`Airs on: ${program?.channel.name || "Unavailable"}`}</span>
                         <span className="broadcast">{program?.broadcastinfo}</span>
-                        <Link className="btn text-bold" to={`/schedule/${program?.id}`}>
+                        <Link className="btn text-bold" to={`/schedule/${program?.channel.id}`}>
                             View Channel
                         </Link>
                     </div>
