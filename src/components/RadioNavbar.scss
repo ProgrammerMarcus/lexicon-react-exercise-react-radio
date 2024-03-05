@@ -27,6 +27,17 @@
         padding: 0.5rem 1rem;
         color: #d1d1d1;
     }
+    @media screen and (max-width: 700px) {
+        display: flex;
+        flex-wrap: wrap;
+        .link {
+            font-size: 1rem;
+        }
+        .search {
+            width: 90%;
+            margin: auto;
+        }
+    }
     .search {
         .input:focus {
             color: white;
