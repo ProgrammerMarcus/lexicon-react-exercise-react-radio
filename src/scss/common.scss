@@ -115,6 +115,12 @@
         height: 300px;
         object-fit: cover;
     }
+    .btn.favorite {
+        background-color: variables.$alt-color !important;
+    }
+    .btn.favorite:hover {
+        background-color: darken($color: variables.$alt-color, $amount: 30) !important;
+    }
 }
 
 .group {
