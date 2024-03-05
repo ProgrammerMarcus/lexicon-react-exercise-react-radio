@@ -43,7 +43,6 @@ export async function getProgramsSearch(search: string) {
 export async function getProgram(id: number) {
     const response = await fetch(`https://api.sr.se/api/v2/programs/${id}?format=JSON`);
     const data = await response.json();
-    console.log(data)
     return data;
 }
 
