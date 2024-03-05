@@ -9,8 +9,17 @@ import RadioPrograms from "./components/RadioPrograms.tsx";
 import RadioSearch from "./components/RadioSearch.tsx";
 import RadioProgramView from "./components/RadioProgramView.tsx";
 import RadioFavorites from "./components/RadioFavorites.tsx";
+import RadioNothing from "./components/RadioNothing.tsx";
 
 const router = createBrowserRouter([
+    {
+        path: "*",
+        element: (
+            <App>
+                <RadioNothing />
+            </App>
+        ),
+    },
     {
         path: "/",
         element: (

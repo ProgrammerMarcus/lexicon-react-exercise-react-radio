@@ -27,6 +27,7 @@ export function RadioFavorites() {
                     {programs.map((p) => (
                         <RadioProgram key={p.id} p={p} />
                     ))}
+                    {programs.length === 0 && <span className="header">You have no favorites!</span>}
                 </section>
             </main>
         </>

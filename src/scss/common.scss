@@ -140,3 +140,13 @@
         color: white;
     }
 }
+
+.message {
+    display: grid;
+    place-content: center;
+    height: 150px;
+    .header {
+        font-size: 2rem;
+        color: white;
+    }
+}
