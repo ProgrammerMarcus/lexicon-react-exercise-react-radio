@@ -1,25 +1,32 @@
 import RadioNavbar from "./components/RadioNavbar";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import "./reset.css";
 import "./App.scss";
 
 type FavoritesContextType = {
     favorites: number[];
-    setFavorites: React.Dispatch<React.SetStateAction<number[]>>;
+    setAndStoreFavorites: (updated: number[]) => void;
 };
 
-const FavoritesContextState = {
-    favorites: [],
-    setFavorites: () => {},
-};
-
-export const FavoritesContext = createContext<FavoritesContextType>(FavoritesContextState);
+export const FavoritesContext = createContext<FavoritesContextType>({ favorites: [], setAndStoreFavorites: () => {} });
 
 export function App(props: { children: JSX.Element }) {
-    const [favorites, setFavorites] = useState<number[]>([]);
+    const [favorites, setFavorites] = useState<number[]>();
+    useEffect(() => {
+        if (localStorage.getItem("favorites")) {
+            setFavorites(JSON.parse(localStorage.getItem("favorites")!)! || [])
+        }
+    },[])
+    function setAndStoreFavoritesGenerator(set: React.Dispatch<React.SetStateAction<number[]>>) {
+        return (updated: number[]) => {
+            set(updated);
+            localStorage.setItem("favorites", JSON.stringify(updated));
+        };
+    }
+    const setAndStoreFavorites = setAndStoreFavoritesGenerator(setFavorites);
     return (
-        <FavoritesContext.Provider value={{ favorites, setFavorites }}>
+        <FavoritesContext.Provider value={{ favorites, setAndStoreFavorites }}>
             <>
                 <RadioNavbar />
                 {props.children}

@@ -5,7 +5,7 @@ import { FavoritesContext } from "../App";
 import { useContext } from "react";
 
 export function RadioPrograms({ p }: { p: Program }) {
-    const { favorites, setFavorites } = useContext(FavoritesContext);
+    const { favorites, setAndStoreFavorites } = useContext(FavoritesContext);
 
     return (
         <>
@@ -23,11 +23,11 @@ export function RadioPrograms({ p }: { p: Program }) {
                         onClick={() => {
                             if (favorites.includes(p.id)) {
                                 const update = [...favorites].filter((v) => v !== p.id);
-                                setFavorites(update);
+                                setAndStoreFavorites(update);
                             } else {
                                 const update = [...favorites];
                                 update.push(p.id);
-                                setFavorites(update);
+                                setAndStoreFavorites(update);
                             }
                         }}
                     >
