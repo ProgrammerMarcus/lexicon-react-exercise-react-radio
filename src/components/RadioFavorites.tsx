@@ -21,14 +21,14 @@ export function RadioFavorites() {
     return (
         <>
             {loading && <RadioLoader />}
-            <main className="list expand">
-                <section className="day">
-                    <h2 className="header text-bold">Favorite Programs</h2>
+            <main className="list">
+                <h2 className="header text-bold">Favorite Programs</h2>
+                <div className="day">
                     {programs.map((p) => (
                         <RadioProgram key={p.id} p={p} />
                     ))}
                     {programs.length === 0 && <span className="header">You have no favorites!</span>}
-                </section>
+                </div>
             </main>
         </>
     );

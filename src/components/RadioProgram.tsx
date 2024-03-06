@@ -4,7 +4,7 @@ import Program from "./interfaces/Program";
 import { FavoritesContext } from "../App";
 import { useContext } from "react";
 
-export function RadioPrograms({ p }: { p: Program }) {
+export function RadioProgram({ p }: { p: Program }) {
     const { favorites, setAndStoreFavorites } = useContext(FavoritesContext);
 
     return (
@@ -42,4 +42,4 @@ export function RadioPrograms({ p }: { p: Program }) {
     );
 }
 
-export default RadioPrograms;
+export default RadioProgram;

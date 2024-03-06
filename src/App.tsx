@@ -28,6 +28,7 @@ export function App(props: { children: JSX.Element }) {
     return (
         <FavoritesContext.Provider value={{ favorites, setAndStoreFavorites }}>
             <>
+                <div className="bg"></div>
                 <RadioNavbar />
                 {props.children}
             </>

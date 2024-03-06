@@ -21,9 +21,11 @@ export function RadioChannels() {
             {loading && <RadioLoader />}
             <main className="list">
                 <h2 className="header text-bold">Available channels</h2>
-                {channels.map((c) => (
-                    <RadioChannel key={c.id} c={c} />
-                ))}
+                <div className="day">
+                    {channels.map((c) => (
+                        <RadioChannel key={c.id} c={c} />
+                    ))}
+                </div>
             </main>
         </>
     );

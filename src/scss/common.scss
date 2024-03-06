@@ -4,7 +4,8 @@
     background-color: darken($color: variables.$accent-color, $amount: 20);
     color: white;
     width: max-content;
-    margin: 12px 12px 0 auto;
+    height: max-content;
+    margin: auto 12px 0 auto;
     padding: 0.5rem;
     border-radius: 5px;
     cursor: pointer;
@@ -21,12 +22,8 @@
 
 .list {
     display: grid;
+    margin: 1rem 5% 0 5%;
     gap: 16px;
-    margin: 12px 5% 0 5%;
-    max-width: 512px;
-    @media screen and (min-width: 560px) {
-        margin: 12px auto 0 auto;
-    }
     .select {
         color: white;
         margin: 0;
@@ -35,15 +32,18 @@
         font-size: 1.2rem;
     }
     .day {
-        display: grid;
-        gap: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
         margin: 12px auto 0 auto;
-        width: 100%;
+        justify-content: center;
     }
     .header {
         font-size: 1.6rem;
         margin: 0 0 0 0;
         color: white;
+        width: 100%;
+        text-align: center;
     }
     .header-big {
         font-size: 2.1rem;
@@ -60,34 +60,35 @@
     }
     .box {
         width: 100%;
-        margin: 0;
+        max-width: 330px;
         display: grid;
         backdrop-filter: brightness(2.2) contrast(1.5) saturate(0.3);
         border-radius: 5px;
         box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.3);
         padding-bottom: 8px;
         .head {
-            display: grid;
-            grid-template: 48px / 48px 1fr;
+            display: flex;
             gap: 16px;
             background-color: variables.$primary-color;
             width: calc(100% + 1px); // rounding error fix for backdrop-filter and background-color
             color: white;
             border-radius: 5px 5px 0 0;
             clip-path: stroke-box;
+            height: 3.6rem;
             .image {
-                height: 3.6rem;
+                height: 100%;
             }
             .name {
-                font-size: 1.3rem;
+                font-size: 1.1rem;
                 margin: auto 0;
             }
         }
         .tagline {
-            margin: 8px 10px 3px 10px;
+            margin: 8px 10px 8px 10px;
         }
         .broadcast {
-            margin: 12px 10px 3px 10px;
+            margin: 3px auto 3px auto;
+            height: 100%;
             font-size: 0.9rem;
             color: darken($color: variables.$accent-color, $amount: 30);
             text-align: center;
@@ -98,10 +99,16 @@
     }
     .controls {
         display: grid;
-        grid-template: 1fr / repeat(3, 7rem);
-        gap: 0.5rem;
+        grid-template: 1fr 1fr / repeat(3, 6rem);
+        gap: 1rem;
+        font-size: 0.9rem;
+        place-content: center;
         .btn {
             width: 100%;
+            text-align: center;
+        }
+        .select {
+            grid-column: 3 span;
             text-align: center;
         }
     }
@@ -148,5 +155,35 @@
     .header {
         font-size: 2rem;
         color: white;
+    }
+}
+
+.view {
+    backdrop-filter: saturate(30%) brightness(20%);
+    padding: 12px;
+    width: 100%;
+    min-height: calc(100svh - 2rem);
+    color: white;
+    .limit {
+        max-width: 720px;
+        margin: auto;
+    }
+    .header-big {
+        font-size: 2.2rem;
+    }
+    .header {
+        font-size: 2.2rem;
+    }
+    .info {
+        display: grid;
+        gap: 0.4rem;
+    }
+    .image-wide {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 10px;
+        margin: 0.3rem auto;
     }
 }

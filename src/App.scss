@@ -17,11 +17,16 @@
     font-variation-settings: "slnt" 0;
 }
 
-body {
+.bg {
+    z-index: -1;
+    position: absolute;
+    top: 0;
     background: linear-gradient(337deg, rgb(255, 81, 171) 0%, rgb(101, 255, 165) 29%, rgba(252, 90, 69, 1) 100%);
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 100svh;
+    height: 100svh;
+    width: 100svw;
+    position: fixed;
 }
 
 * {

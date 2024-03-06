@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../scss/common.scss";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getProgramsOnDateOnChannelJSON, stringToDate } from "./RadioCore";
 import RadioLoader from "./RadioLoader";
 import Schedule from "./interfaces/Schedule";
@@ -23,9 +23,9 @@ export function RadioSchedule() {
     return (
         <>
             {loading && <RadioLoader />}
-            <main className="list expand">
-                <span className="select">View Schedule for:</span>
+            <main className="list">
                 <div className="controls">
+                    <span className="select">View Schedule for:</span>
                     <button
                         className={active === "Today" ? "btn active" : "btn"}
                         onClick={() => {
@@ -64,6 +64,9 @@ export function RadioSchedule() {
                             </div>
                             <p className="broadcast">{stringToDate(p.starttimeutc)}</p>
                             <p className="tagline">{p.description}</p>
+                            <Link className="btn text-bold" to={`/view/${p.program.id}`}>
+                                View
+                            </Link>
                         </section>
                     ))}
                 </section>

@@ -14,28 +14,6 @@
     border-radius: 50%;
 }
 
-.RadioLoader::after {
-    display: fixed;
-    position: absolute;
-    content: "";
-    width: 200px;
-    height: 200px;
-    animation: RadioLoaderAnimation 4s linear infinite;
-    border: 25px dotted variables.$accent-color;
-    border-radius: 50%;
-}
-
-.RadioLoader::before {
-    display: fixed;
-    position: absolute;
-    content: "";
-    width: 220px;
-    height: 220px;
-    animation: RadioLoaderAnimation 9s linear infinite;
-    border: 25px dotted variables.$accent-color;
-    border-radius: 50%;
-}
-
 @keyframes RadioLoaderAnimation {
     0% {
         transform: rotate(0deg);

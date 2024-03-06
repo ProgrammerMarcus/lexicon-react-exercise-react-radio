@@ -21,12 +21,11 @@ export function RadioProgramView() {
         <>
             {loading && <RadioLoader />}
             {program && (
-                <main className="list expand">
-                    <section className="day">
+                <main className="view">
+                    <div className="limit">
                         <h2 className="header-big text-bold">{program.name || "Unavailable"}</h2>
                         <img src={program.programimagewide} alt="Program image" className="image-wide" />
-                        <div className="box info">
-                            <h3 className="header">Info</h3>
+                        <div className="info">
                             <span className="text-bold">{program.description}</span>
                             <span>{`Email: ${program.email || "Unavailable"}`}</span>
                             <span>{`Phone: ${program.phone || "Unavailable"}`}</span>
@@ -40,7 +39,7 @@ export function RadioProgramView() {
                                 View Channel
                             </Link>
                         </div>
-                    </section>
+                    </div>
                 </main>
             )}
         </>
