@@ -12,10 +12,10 @@ type FavoritesContextType = {
 export const FavoritesContext = createContext<FavoritesContextType>({ favorites: [], setAndStoreFavorites: () => {} });
 
 export function App(props: { children: JSX.Element }) {
-    const [favorites, setFavorites] = useState<number[]>();
+    const [favorites, setFavorites] = useState<number[]>([]);
     useEffect(() => {
         if (localStorage.getItem("favorites")) {
-            setFavorites(JSON.parse(localStorage.getItem("favorites")!)! || [])
+            setFavorites(JSON.parse(localStorage.getItem("favorites")!) || [])
         }
     },[])
     function setAndStoreFavoritesGenerator(set: React.Dispatch<React.SetStateAction<number[]>>) {
