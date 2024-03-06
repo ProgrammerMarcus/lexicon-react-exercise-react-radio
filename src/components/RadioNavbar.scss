@@ -1,46 +1,55 @@
 @use "../scss/variables.scss";
 
+@keyframes expand {
+    from {
+        width: 0%;
+    }
+    to {
+        width: calc(100% - 5rem);
+    }
+}
+
 .RadioNavbar {
     background-color: variables.$primary-color;
     color: white;
-    gap: 0.8rem;
+    gap: 0.5rem;
     display: grid;
     position: sticky;
     top: 0;
     z-index: 111;
-    grid-template: 3rem / min-content min-content min-content min-content 1fr;
-    padding: 4px 0;
+    grid-template: 3rem / min-content min-content min-content min-content;
+    padding: 1px 0;
     .link {
         color: white;
-        font-size: 1.1rem;
         margin: auto;
+        font-size: 0.85rem;
     }
     .logo {
-        width: 2.2rem;
-        height: 2.2rem;
+        width: 2rem;
+        height: 2rem;
         margin: auto auto auto 0.5rem;
     }
     .search {
         background-color: variables.$lighter-color;
         border-radius: 1rem;
-        margin: auto 1rem auto auto;
+        margin: auto 2rem auto auto;
         padding: 0.5rem 1rem;
         color: #d1d1d1;
+        position: absolute;
+        width: calc(100% - 5rem);
+        height: 2.1rem;
+        right: 2rem;
+        top: 0.55rem;
+        animation-name: expand;
+        animation-duration: 0.5s;
     }
-    @media screen and (max-width: 700px) {
-        display: flex;
-        flex-wrap: wrap;
-        .link {
-            font-size: 1rem;
-        }
-        .search {
-            width: 90%;
-            margin: auto;
-        }
-    }
-    .search {
-        .input:focus {
-            color: white;
-        }
+    .search-icon {
+        position: absolute;
+        width: 1.5rem;
+        height: 2.3rem;
+        margin: auto;
+        right: 1.5rem;
+        top: 0.55rem;
+        cursor: pointer;
     }
 }
