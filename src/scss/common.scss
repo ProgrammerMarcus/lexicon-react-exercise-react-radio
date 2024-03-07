@@ -182,8 +182,21 @@
         width: 100%;
         height: 300px;
         object-fit: cover;
-        object-position: top;
         border-radius: 10px;
         margin: 0.3rem auto;
+    }
+    .link {
+        color: variables.$accent-color;
+        text-decoration: underline;
+    }
+    .broadcast {
+        text-align: center;
+        font-style: italic;
+    }
+    .controls {
+        display: grid;
+        width: min-content;
+        margin: 4px 0 0 auto;
+        grid-template: 1fr / min-content min-content;
     }
 }

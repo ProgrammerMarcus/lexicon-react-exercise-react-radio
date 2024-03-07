@@ -24,7 +24,7 @@ export function RadioProgramView() {
                 <main className="view">
                     <div className="limit">
                         <h2 className="header-big text-bold">{program.name || "Unavailable"}</h2>
-                        <img src={program.programimagewide} alt="Program image" className="image-wide" />
+                        <img src={program.programimage} alt="Program image" className="image-wide" />
                         <div className="info">
                             <span className="text-bold">{program.description}</span>
                             <span>{`Email: ${program.email || "Unavailable"}`}</span>
@@ -35,9 +35,12 @@ export function RadioProgramView() {
                             <span>{"Category: " + (program.programcategory ? program.programcategory.name : "Unavailable")}</span>
                             <span>{`Airs on: ${program.channel.name || "Unavailable"}`}</span>
                             <span className="broadcast">{program.broadcastinfo}</span>
+                            <div className="controls">
+                            <a className="btn text-bold" href={program.programurl || ""}>{(program.programurl ? "Source" : "Unavailable")}</a>
                             <Link className="btn text-bold" to={`/schedule/${program.channel.id}`}>
                                 View Channel
                             </Link>
+                            </div>
                         </div>
                     </div>
                 </main>
