@@ -17,9 +17,12 @@ export function RadioProgram({ p }: { p: Program }) {
                 <p className="broadcast">{p.broadcastinfo}</p>
                 <p className="tagline">{p.description}</p>
                 <div className="row">
-                    <button
-                        type="button"
-                        className={favorites.includes(p.id) ? "btn text-bold favorite" : "btn text-bold"}
+                    <Link className="btn text-bold" to={`/view/${p.id}`}>
+                        View
+                    </Link>
+                    <img
+                        src={favorites.includes(p.id) ? "/starf.svg" : "/star.svg"}
+                        className={favorites.includes(p.id) ? "btn favorite" : "btn"}
                         onClick={() => {
                             if (favorites.includes(p.id)) {
                                 const update = [...favorites].filter((v) => v !== p.id);
@@ -30,12 +33,7 @@ export function RadioProgram({ p }: { p: Program }) {
                                 setAndStoreFavorites(update);
                             }
                         }}
-                    >
-                        {favorites.includes(p.id) ? "Unfavorite" : "Favorite"}
-                    </button>
-                    <Link className="btn text-bold" to={`/view/${p.id}`}>
-                        View
-                    </Link>
+                    />
                 </div>
             </section>
         </>
